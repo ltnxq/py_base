@@ -9,6 +9,12 @@ list1 = ['python', 'test1', 'test2']
 # 表达式 逻辑是判读是否是p开头 是原样输出 不是转换为大写
 list2 = [word.title() if word.startswith('p') else word.upper() for word in list1] 
 print(list2)
+print("list推导________")
+#3*3 总共9个元素
+vec1 = [2,4,6]
+vec2 = [4,3,-9]
+vec3 = [x*y for x in vec1 for y in vec2]
+print(vec3)
 
 
 #dictionary 推导式 { key_expr: value_expr for value in collection if condition }
@@ -35,4 +41,5 @@ a = (x for x in range(1,10))
 print(a)
 #返回的结果是一个生成器对象。 使用 tuple() 函数，可以直接将生成器对象转换成元组
 print(tuple(a))
+
 

@@ -1,6 +1,6 @@
 '''
 1、两个下划线开头表示private属性
-2、def定义类的方法的时候,第一个参数必须是self，self == this
+2、def定义类的方法的时候,第一个参数必须是self self == this
 3、__开头的方法为private method
 '''
 

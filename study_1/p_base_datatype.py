@@ -26,6 +26,8 @@ print(tuple[2:])
 print(tuple*2)
 print(tuple + tinytuple)
 
+print("tuple as record........")
+
 #set 集合
 sites = {'google','taobao','runoob','facebook','google'}
 print(sites)

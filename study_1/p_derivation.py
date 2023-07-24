@@ -23,7 +23,10 @@ newdict = {key:len(key) for key in listdemo}
 print(newdict)
 dic = {x:x**2 for x in (2,4,6)}
 print(dic)
-
+print("--------------------------")
+DIAL_CODES = [(86, 'China'),(91, 'India'),(1, 'United States'),(62, 'Indonesia'), (55, 'Brazil') , (92, 'Pakistan'),(880, 'Bangladesh')]
+country_code = {country:code for code ,country in DIAL_CODES}
+print("country_code-",country_code)
 
 
 #set(集合推导式) { expression for item in Sequence if conditional }
@@ -41,5 +44,4 @@ a = (x for x in range(1,10))
 print(a)
 #返回的结果是一个生成器对象。 使用 tuple() 函数，可以直接将生成器对象转换成元组
 print(tuple(a))
-
 

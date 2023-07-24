@@ -1,8 +1,15 @@
 from distutils.core import setup
 import py2exe
 
+'''
+需要在cmd命令中执行打包的命令 不是直接run py
+例如
+python p_py_2_exe.py py2exe
+'''
+
 INCLUDES = []
 
+#设置一些参数
 options = {
     "py2exe" :
         {
@@ -18,5 +25,5 @@ setup(
     options=options,    
     description = "this is a py2exe test",   
     zipfile=None,
-    console = [{"script":'p_readjsAndChange.py'}]
+    console = [{"script":'p_appbuild4Android_lhz.py'}]
 )

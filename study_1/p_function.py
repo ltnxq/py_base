@@ -65,3 +65,40 @@ myTripler = myFunc(3)
 
 print(mydoubler(11))
 print(myTripler(11))
+
+def factorial(n):
+    '''return n!'''
+    return 1 if n < 2 else n * factorial(n-1)
+print(factorial(42))
+print(factorial.__doc__)
+print(type(factorial))
+
+#函数作为参数传递 或者 赋值给变量
+fact = factorial
+print(fact)
+print(fact(5))
+print("----------------------")
+it = map(factorial,range(4))
+for item in it:
+    print(item)
+
+'''
+key也是一个函数类型的参数  len 比较长度  可以自定义函数
+先对每个元素作用key对应的函数 然后再进行排序
+'''
+
+fruits = ['strawberry', 'fig', 'apple', 'cherry', 'raspberry', 'banana']
+new_fruits = sorted(fruits, key=len)
+print(new_fruits)
+
+def reverse(word):
+    return word[::-1]
+
+print(sorted(fruits,key = reverse))
+
+#使用列表推导代替 map filter
+print(list(map(fact,range(6))))
+print([fact(n) for n in range (6)])
+
+print(list(map(factorial,filter(lambda n:n%2,range(6)))))
+print([factorial(n) for n in range(6) if n%2])

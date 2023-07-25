@@ -41,3 +41,125 @@ def outer_a():
     print(num_a)
 outer_a()
 print(num_a)
+
+
+
+def f1(a):
+    print(a)
+    print(b)
+
+'''
+在编译字节码的时候 会把b当成局部变量,因为在函数体使用,在print(b)在函数局部发现b没有值 会报错
+UnboundLocalError: local variable 'b' referenced before assignment
+'''
+b = 6
+def f2(a):
+    print(a)
+    print(b)
+    b = 9
+
+#反汇编f1函数
+from dis import dis
+print(dis(f1))
+
+#LOAD_GLOBAL b  f1中 把b当作成了全局变量去使用了
+
+'''
+48           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_FAST                0 (a)
+              4 CALL_FUNCTION            1
+              6 POP_TOP
+
+ 49           8 LOAD_GLOBAL              0 (print)
+             10 LOAD_GLOBAL              1 (b)
+             12 CALL_FUNCTION            1
+             14 POP_TOP
+             16 LOAD_CONST               0 (None)
+             18 RETURN_VALUE
+
+'''
+
+#反汇编f2函数
+#LOAD_FAST 把b当作了局部变量 即使f2函数中b是后赋值
+print(dis(f2))
+
+'''
+57           0 LOAD_GLOBAL              0 (print)
+              2 LOAD_FAST                0 (a)
+              4 CALL_FUNCTION            1
+              6 POP_TOP
+
+ 58           8 LOAD_GLOBAL              0 (print)
+             10 LOAD_FAST                1 (b)
+             12 CALL_FUNCTION            1
+             14 POP_TOP
+
+ 59          16 LOAD_CONST               1 (9)
+             18 STORE_FAST               1 (b)
+             20 LOAD_CONST               0 (None)
+             22 RETURN_VALUE
+
+'''
+
+
+print("--------------------------------闭包------------------------")
+'''
+函数闭包理解
+闭包是一种函数，它会保留定义函数时存在的自由变量的绑定，这样调用函数时，虽然定义作用域不可用了，但是仍能使用那些绑定。
+'''
+#使用类存储临时数据
+class Average():
+    def __init__(self) -> None:
+        self.series = []
+    def __call__(self,new_value):
+        self.series.append(new_value)
+        total = sum(self.series)
+        return total / len(self.series)
+
+avg = Average()
+print(avg(10))
+print(avg(11))
+print(avg(12))
+
+#函数式实现
+def make_average():
+    #--- 闭包开始-----------
+    series = []   #--自由变量
+    def average(new_value):
+        series.append(new_value)
+        total = sum(series)
+        return total /len(series)
+    #----闭包结束-------------
+    return average
+
+'''
+avg_func函数引用一直存在到调用结束,所以series的引用也会一直到avg_func销毁为止
+'''
+avg_func = make_average()  #返回一个函数
+print(avg_func(10))
+print(avg_func(11))
+print(avg_func(12))
+
+print(avg_func.__code__.co_varnames)  #局部变量
+print(avg_func.__code__.co_freevars)  #自由变量  
+print(avg_func.__closure__[0].cell_contents)
+
+'''
+nonlocal关键字 使用nonlocal 将变量绑定为自由变量
+'''
+
+def make_average_2():
+    count = 0
+    total = 0
+    '''但是对数字、字符串、元组等不可变类型来说 只能读取,不能更新。
+       如果尝试重新绑定,例如count=count+1,
+       其实会隐式创建局部变量count。
+       这样,count就不是自由变量了,因此不会保存在闭包中'''
+    def average(new_value):
+        nonlocal count,total
+        count += 1
+        total += new_value
+        return total / count
+    return average
+
+print(make_average_2()(10))

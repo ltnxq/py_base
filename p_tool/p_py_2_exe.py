@@ -25,5 +25,5 @@ setup(
     options=options,    
     description = "this is a py2exe test",   
     zipfile=None,
-    console = [{"script":'p_appbuild4Android_lhz.py'}]
+    console = [{"script":'p_appbuild4Android.py'}]
 )

@@ -17,3 +17,9 @@ import calendar
 cal = calendar.month(2016,1)
 print("ssssssssssssssss")
 print(cal)
+
+from datetime import datetime
+now = datetime.now()
+print(format(now,'%H:%M:%S'))
+str1 = "it is now {:%I:%M%p}".format(now)
+print(str1)

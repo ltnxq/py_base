@@ -71,6 +71,7 @@ print(id(list1))
 9、enumerate(sequence, [start=0]) sequence -- 一个序列、迭代器或其他支持迭代对象。 start 起始的索引 返回枚举对象
 '''
 seasons = ['Spring', 'Summer', 'Fall', 'Winter']
+print("enumerate function.......................")
 for i, element in enumerate(seasons,2):
     print(i, element)
 
@@ -166,6 +167,9 @@ print(callable(8))
 
 '''
 17、format语法 str.format()  具体数字格式化参考教程
+    ①:不指定位置
+    ②:指定位置
+    ③:指定参数
 '''
 s1 = "{} {}" .format("hello","world")    #不指定位置
 print(s1)
@@ -314,3 +318,25 @@ print ("round(80.264, 2) : ", round(80.264, 2))
 27、memoryview() 函数返回给定参数的内存查看对象(memory view)。
     所谓内存查看对象 是指对支持缓冲区协议的数据进行包装 在不需要复制对象基础上允许Python代码访问。
 '''
+
+'''
+28、zip函数 函数用于将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的列表。
+            如果各个迭代器的元素个数不一致，则返回列表长度与最短的对象相同
+            语法zip([iterable,...])
+'''
+a = [1,2,3]
+b = [4,5,6]
+c = [4,5,6,7,8]
+zipped = zip(a,b) #输出[(1,4),(2,5),(3,6)]
+
+#与zip相反,*zipped可理解为解压,返回二维矩阵式
+zip1 = zip(*zipped) #输出[(1,2,3),(4,5,6)]
+print(zip1)
+
+for item1 in zip1:
+    print(item1)
+
+#itertools.zip_longest函数的行为有所不同：使用可选的fillvalue（默认值为None）填充缺失的值，因此可以继续产出，直到最长的可迭代对象耗尽
+from itertools import zip_longest
+for item2 in zip_longest(range(3),'ABC',[0.0,1.1,2.2,3.3],fillvalue=-1):
+    print(item2)

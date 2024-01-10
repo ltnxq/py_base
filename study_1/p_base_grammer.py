@@ -2,8 +2,22 @@ word = '字符串'
 sentence = "这是一个句子"
 paragraph = """ 这是一个段落
 可以由多行组成"""
-
 print(paragraph)
+json ="""
+{
+    "direction":"up",
+    "speed":"10.9",
+    "configDTO":{
+       "serviceAddress":"http://127.0.0.1:48992/control/api/v1/drcFly",
+       "accessKeyId":"MACHINE_NEST_DAJIANG",
+       "accessKeySecret":"384D44146AF2FC4F"
+    },
+    "sn":"109"
+}
+"""
+#打印json
+print(json)
+
 
 str = '123456789'
 

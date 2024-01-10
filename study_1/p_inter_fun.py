@@ -177,13 +177,13 @@ print(s1)
 s2 = "{1},{0},{1}".format("hello","world")  #指定位置
 print(s2)
 
-print("网站名:{name},地址 {url}".format(name = "菜鸟教程",url = "www.runoob.com")) #指定参数
+print("网站名:{name},地址 {url}".format(name = "python 练习",url = "www.runoob.com")) #指定参数
 # 通过字典设置参数
-site = {"name": "菜鸟教程", "url": "www.runoob.com"}
+site = {"name": "python练习", "url": "www.runoob.com"}
 print("网站名：{name}, 地址 {url}".format(**site))
  
 # 通过列表索引设置参数
-my_list = ['菜鸟教程', 'www.runoob.com']
+my_list = ['python练习', 'www.runoob.com']
 print("网站名：{0[0]}, 地址 {0[1]}".format(my_list))  # "0" 是必须的
 
 #数字格式化

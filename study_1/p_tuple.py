@@ -13,8 +13,10 @@ print(city)
 print(year)
 print(pop)
 
+
 traveler_ids = [('USA','3119277'),('bar','CEFFFO'),('ESP','SDSSSS')]
 for passport in sorted(traveler_ids):
+    #print('{}:{}'.format(passport))  format 
     print('%s/%s'%passport)
 
 #使用占位符_
@@ -51,3 +53,7 @@ print(tokyo.population)
 print(tokyo.coordinates)
 print(tokyo[1])
 
+
+tu2 = ("s",2)
+print(tu2[0])
+print(tu2[1])

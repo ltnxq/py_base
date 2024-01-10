@@ -39,10 +39,10 @@ else:
 # set可以进行集合运算
 a = set('abracadabra')
 b = set('alacazam')
-print(a-b)
-print(a | b)
-print(a & b)
-print(a ^ b)
+print('a-b:',a-b)
+print('a|b',a | b)
+print('a&b',a & b)
+print('a^b',a ^ b)
 
 
 #字典
@@ -50,8 +50,8 @@ print(a ^ b)
 # 2、字典的关键字必须为不可变类型，且不能重复。
 # 3、创建空字典使用 { }。
 dict3 = {}
-dict3['one'] = "1 - 菜鸟教程"
-dict3[2] = "2-菜鸟教程"
+dict3['one'] = "1 - python练习"
+dict3[2] = "2-python练习"
 
 tinydict = {'name': 'runoob','code':1, 'site': 'www.runoob.com'}
 
@@ -67,9 +67,9 @@ dict1 = dict([('Runoob', 1), ('Google', 2), ('Taobao', 3)])
 dict2 = {x:x**2 for x in (2,4,6)}
 dict3 = dict(runoob=1,google=2,taobao=3)
 
-print(dict1)
-print(dict2)
-print(dict3)
+print('dict1:',dict1)
+print('dict2',dict2)
+print('dict3',dict3)
 
 #bytes类型 
 # bytes 类型通常用于处理二进制数据，比如图像文件、音频文件、视频文件等等。在网络编程中，也经常使用 bytes 类型来传输二进制数据。
@@ -87,10 +87,11 @@ if x[0] == ord("h"):
 
 def reverseWords(input):
     inputwords = input.split(" ")
+    #反转输出
     inputwords = inputwords[-1::-1]
 
     # 重新组合
-    output = ' '.join(inputwords)
+    output = ' /'.join(inputwords)
 
     return output
 

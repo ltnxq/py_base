@@ -45,7 +45,7 @@ class site:
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return "invoke"
 
-x = site("菜鸟教程",'www.runoob.com')
+x = site("python exercise",'www.runoob.com')
 x.who()
 x.foo()
 print(x)

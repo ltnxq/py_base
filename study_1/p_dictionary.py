@@ -40,7 +40,7 @@ print(hash(tt))
 
 #TypeError: unhashable type: 'list'
 t1 = (1,2,[30,40])
-# print(hash(t1))
+#print(hash(t1))
 tf = (1,2,frozenset([30,40]))
 print(hash(tf))
 
@@ -59,14 +59,31 @@ DIAL_CODES = [
         (81, 'Japan'),
     ]
 
-#以不同的顺序来构造dict
+#以插入的顺序来构造字典
 d1 = dict(DIAL_CODES)  
 print('d1:', d1.keys())
-d2 = dict(sorted(DIAL_CODES)) #key添加顺序按照 电话区号来的 
+#key添加顺序按照 电话区号来的 
+d2 = dict(sorted(DIAL_CODES)) 
 print('d2:', d2.keys())
 d3 = dict(sorted(DIAL_CODES, key=lambda x:x[1]))  #按照 x[1] ==> 国家的名字来排序的
 print('d3:', d3.keys())
-assert d1 == d2 and d2 == d3  
+# == 比较key 和 value的值
+print("d1==d2:{}".format(d1 == d2))
+print("d1==d2:{}".format(d2 == d3))
+
+
+'''
+利用dict.items()方法对字典进行遍历
+'''
+dict_new1 = {"name":"zyz","age":1}
+print("dict items iterator:")
+for (key,value) in dict_new1.items():
+    print(key+ ":"+str(value))
+
+
+
+
+
 '''
 python底层实现原理是 一个数组存放index集合  一个数组存放真正的实体数据，
    index [none、none、none、none、none、none、none、none]

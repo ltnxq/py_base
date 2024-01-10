@@ -14,8 +14,12 @@ a = [1,2]
 b = [2,3]
 c = [2,3]
 
+#operator 比较的list的值是否相等
 print("operator.eq(a,b):",operator.eq(a,b))
 print("operator.eq(a,b):",operator.eq(c,b))
+
+#bc值虽然相等  但是对应的地址id是不同的
+print("id(b):{},id(c):{}".format(id(b),id(c)))
 
 #函数 len、max、min、list(seq)
 #方法 append、count、index、insert、reverse、sort、clear、copy
@@ -41,6 +45,7 @@ d = a
 这只是针对这种比较单一的普通列表。
 """
 import copy
+# 把对象地址复制给a
 a = [1,2,3,4]
 b = a
 #还有一个就是用list自带的copy()方法,把重新开辟内存空间存储新列表。
@@ -48,7 +53,7 @@ d = copy.copy(a)
 b[0] = 'b'
 
 print(a,b,d)
-print(id(a),id(b),id(d))
+print('after copy,id(a):{},id(b):{},id(d):{}'.format(id(a),id(b),id(d)))
 
 #python 列表是链式存储结构非顺序存储结构
 #1 2 3 4代表一个内存地址 list将其用链表连接在一起而已

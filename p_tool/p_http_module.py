@@ -1,35 +1,50 @@
-
-
-
-# conn.request("POST", "/post",body=body)
-
-# resp = conn.getresponse()
-
-# print(resp.status, resp.reason, resp.version)
-
 import requests
 import json
-from requests.packages import urllib3
 
-urllib3.disable_warnings()
+host = "http://127.0.0.1:18069/"
+
+'''
+1、基本的get请求
+   respose status_code的数据类型是int
+   response.text  是str类型
+   response.json() 返回的响应体是dict格式  如果要进行遍历dict打印
+   response.headers 返回响应头
+   response.cookies 返回响应的cookie
+'''
+print("1"+"-"*60)
+response = requests.get(host + "video/token")
+print(type(response.status_code))
+print(response.status_code)
+print(type(response.text))
+print(response.text)
+print(type(response.json()))
+print(response.json())
+# 遍历返回的body
+# for key,value in response.json().items():
+#     print(key+":"+str(value))
+print(type(response.headers))
+print(response.headers)
+
+'''
+2、基本get请求,带param参数
+'''
+print("2"+"-"*60)
+param_data = {"user":"admin"}
+response = requests.get(host + "login",params=param_data)
+print(type(response.cookies))
+print(response.cookies)
+
+for key,value in response.cookies.items():
+    print(key + ":" +value)
 
 
-url = "https://172.24.12.75/base/login"
-locationUrl = "https://172.24.12.75/base/location/table"
-
-headers = {"Ssep_token":"ZXlKaGJHY2lPaUpCUlZNaUxDSjBlWEFpT2lKS1YxUWlmUT09LmV5SmxlSEFpT2lJeE5qZzNPRGswTmpZM016UTFJaXdpWlhod1JHRjBZU0k2ZXlKM1pXSnphWFJsU1dRaU9pSm1ZbVkzTkdWa00yRXdNV0kwTkdRMVlUWTVPREEwT0RKbE1qazBaREZqWkNJc0luVnpaWEpKWkNJNkltSmpZMlk0WkRNeU9URXhORFF4WVdNNE9UbGhPV1E1TVRJME9UYzBNbUkzSWl3aWFYTlhaV0p6YVhSbFFXUnRhVzRpT2lJeEluMHNJbWxoZENJNklqRTJPRGM0TmpVNE5qY3pORFVpTENKcGMzTWlPaUpUYVdWdFpXNXpJRkJ2ZDJWeUlFRjFkRzl0WVhScGIyNGdUSFJrTGlKOS5GNEp4UUlzWS9sSmdHMDU4c3JnSzFKQTJ5TTF0RUJPTkp0dktPMTZubVgvTjk4TzErRit4ZlhiYWdkMkdURUsxQTVub3ExSkFYUVBaUzN3aG10bE96QT09"}
-# conn = http.client.HTTPSConnection("172.24.12.75/base/login",context=ssl._create_unverified_context())
-# dict_opu = dict(sape=223,jack="980",zyz=908)
-
-payload = {
-    "pageSize": 15,
-    "pageNo": 1
-}
-str = json.dumps(payload)
-
-res = requests.post(locationUrl,json=payload,headers=headers,verify=False)
-
-print(res.status_code)
-print(res.text)
-print(res.headers)
-
+'''
+3、基本的post请求
+   如果接口需要body参数 那么就必须设置对应的header 设置为application/json支持的格式
+   并且对应的参数应该是json = data
+'''
+print("3"+"-"*60)
+headers={'content-type': 'application/json'}
+data = {'name': 'germey', 'age': '22'}
+response = requests.post(host+"video/onlineStatus",json=data,headers=headers)
+print(response.json())

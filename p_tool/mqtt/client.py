@@ -8,8 +8,8 @@ port  = 1883
 topic = "/test/code"
 
 #服务端连接认证信息
-username = 'emqx'
-password = '**********'
+username = 'user'
+password = 'jsTh}!2023'
 
 client_id_ = "local_80_128_2"
 
@@ -24,7 +24,7 @@ def connect_mqtt():
     # 设置crt证书
     # client.tls_set(ca_certs='./server-ca.crt')
     # 设置用户名和密码
-    # client.username_pw_set(username, password)  
+    client.username_pw_set(username, password)  
     client.on_connect = on_connect
     client.connect(broker,port)
     return client

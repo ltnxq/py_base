@@ -287,6 +287,7 @@ words = [
 #构造一个Counter对象
 words_counts = Counter(words)
 top_three = words_counts.most_common(3)
+print(words_counts.popitem())
 print(top_three)
 #底层是字典 继承了字典
 print(words_counts['eyes'])

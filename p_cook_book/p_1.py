@@ -45,6 +45,7 @@ print(price)
 '''
 2、从任意长度的可迭代对象中分解元素
    * 表达式的利用  *修饰的变量的类型是list
+   statistics.mean()方法 求平均值
 '''
 def drop_first_last(grades):
     first,*middle,last = grades
@@ -272,7 +273,7 @@ print(a.stop)
 print(a.step)
 
 '''
-top n的求解 使用collection模块的counter
+top n的求解 使用collection模块的Counter
     Counter底层的实现是字典,在元素和出现次数做了映射 所以元素必须是可hash的对象
     两个Counter对象之间可以进行一些数学运算 比如 + -等
 '''
@@ -359,7 +360,7 @@ print(user_sort_by_userId)
 
 '''
 6、分组的解决方式
-   itertools.groupby
+   itertools.groupby 分组之前必须进行排序,否则分组实现出错
 '''
 print("21"+"-"*60)
 rows = [ 
@@ -399,9 +400,11 @@ print(b)
 #生成器表达式
 c = (n for n in my_list if n > 0)
 print(c)
+#注:生成器转换为列表的时候,生成器只能迭代一次
+k = list(c)
+print("k:{}".format(k))
 for i in c:
     print(i)
-
 #filter函数处理一些复杂的逻辑
 values = ['1', '2', '-3', '-', '4', 'N/A', '5'] 
 def is_int(value):

@@ -428,10 +428,59 @@ def sort_by_number():
     for s in unique_str:
         print(s,end="")
 
+'''
+18、两数之和
+'''
+def sum_of_2_number():
+    in_1 = input("请输入一行整数按照空格分割: ").split()
+    target = int(input("请输入目标值:"))
+    resList = []
+    for i in range(len(in_1)-1):
+        for j in range(i+1,len(in_1)):
+            if int(in_1[i]) + int(in_1[j]) == target :
+               resList.append((i,j))
+    for item in resList:
+        print('{}:{}'.format(item[0],item[1]))
+
+'''
+19、判断是否是回文数 左右对称
+    121 是  123不是 233 不是
+'''
+def is_symmetry():
+    line = input("请输入待判断的数字: ")
+    rser_line_iter = reversed(line)
+    for ch in line:
+        if ch != next(rser_line_iter):
+            print("is not symmetry ")
+            return
+    print("is symmetry")
 
 
-         
-      
+'''
+20、最长公共前缀
+    strs = ["flower","flow","flight"]  最长公共前缀是fl
+'''
+def get_prefix():
+    strs = ["dog","dacecar","dar"]
+    sorted_str = sorted(strs,key = lambda str : len(str))
+    #长度最短的字符串
+    min_str = sorted_str[0]        
+    
+    i = 0
+    is_same = True
+    for i in range(len(min_str)):
+
+        for j in range(1,len(strs)):
+            if(min_str[i] == sorted_str[j][i]):
+                pass
+            else:
+                is_same = False
+                break
+        if not is_same:
+            break
+    print(min_str[0:i])
+
+
 
 
 
@@ -471,7 +520,7 @@ if __name__ == "__main__":
     #reverse_numbers()
     #get_simple_password()
     #dele_less_char()
-    dele_less_char_v2()
+    #dele_less_char_v2()
     #reverse_output()
     #string_sort()
     #create_snake_matrix()
@@ -480,4 +529,7 @@ if __name__ == "__main__":
     #print(get_digit_no(3))
     #get_self_serving()
     #sort_by_number()
+    #sum_of_2_number()
+    #is_symmetry()
+    get_prefix()
     pass

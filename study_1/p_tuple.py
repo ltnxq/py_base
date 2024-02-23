@@ -57,3 +57,6 @@ print(tokyo[1])
 tu2 = ("s",2)
 print(tu2[0])
 print(tu2[1])
+
+t1 = (1,2,3,4)
+print(*t1)

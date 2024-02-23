@@ -91,6 +91,7 @@ print(a)
 函数式对象的用法
 '''
 def matchcase(word):
+    # m 就是正则的对象 group方法返回匹配的字符串
     def replace(m):
         text = m.group()
         if text.isupper():
@@ -104,6 +105,7 @@ def matchcase(word):
     return replace
 
 a = re.sub('python',matchcase('snake'),text,flags=re.IGNORECASE)
+print(a)
 
 
 '''

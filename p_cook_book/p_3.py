@@ -38,6 +38,10 @@ a = Decimal("1.3")
 b = Decimal("1.7")
 print(a / b)
 
+'''
+with localcontext()方法用于创建一个上下文,decimal 的运算在指定的上下文中运行
+ctx.prec = 5 指定小数的精度是5,如果在外面执行就会恢复默认精度
+'''
 with localcontext() as ctx:
     ctx.prec = 5
     print(a / b)
@@ -101,6 +105,7 @@ print(c.numerator)    #分子
 #转换为浮点数
 print(float(c))
 
+#浮点数转换为Fraction对象
 x = 3.75
 y = Fraction(*x.as_integer_ratio())
 print(y)
@@ -185,11 +190,12 @@ print(now)
 
 '''
 dateutil 模块的使用 相对于datetime 模块提供了更丰富的功能
+比如timedelta不能操作月份的间隔
 '''
 # a = datetime(2012,9,23)
 # 不可以直接操作月份的间隔
 # a + timedelta(months = 1)
-
+print("9"+"-"*60)
 from dateutil.relativedelta import relativedelta
 a = datetime(2012,10,31)
 b = a + relativedelta(months=+5)
@@ -207,9 +213,12 @@ print(d.days)
 当月的日期范围
 date.today()返回当天时间
 '''
-print("9"+"-"*60)
+print("10"+"-"*60)
 from datetime import date
 import calendar
+
+d = date.today().replace(day=1)
+print(d)
 
 #返回 start_date的月份的开始时间和结束时间
 def get_month_range(start_date = None):
@@ -245,7 +254,7 @@ for i in date_range(datetime(2012,9,1),datetime(2012,10,1),timedelta(hours=12)):
 strptime支持许多格式化的形式,%Y代表以4位数字表示的年份 %m代表以两位表示的月份
 strptime()的性能相对较差,不推荐使用,如果知道日期格式,可以自己写方法去转换位日期格式
 '''
-print("10"+"-"*60)
+print("11"+"-"*60)
 text = "2012-09-20"
 y = datetime.strptime(text,"%Y-%m-%d")
 z = datetime.now()
@@ -272,3 +281,20 @@ print("时间:{}".format(dt.strftime('%Y-%m-%d %H:%M:%S %f')))
 处理时间涉及到时区方面的问题的话,推荐使用pytz模块
 '''
 
+'''
+9、将时间戳转换为日期格式
+'''
+print("12"+"-"*60)
+timestamp = 1706152464
+
+#将时间戳转换为日期
+date = datetime.fromtimestamp(timestamp)
+print('日期为:{}'.format(date))
+
+'''
+获取当前时间戳
+'''
+import time
+
+timestamp = time.time()
+print("当前时间戳为: ",timestamp)

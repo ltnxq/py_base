@@ -4,6 +4,7 @@
 
 '''
 1、迭代器的基础知识和原理
+   iter() 返回一个可迭代对象的迭代器
 '''
 print("1"+"-"*60)
 a = [1,2,3]
@@ -72,8 +73,12 @@ for  i in frange(0,4,0.5):
 # list、sum都是可以接受生成器作为参数
 a = list(frange(1,8,0.5))
 b = sum(frange(1,10,0.5))
+c = min(frange(1,20,1))
+d = max(frange(1,20,1))
 print(a)
 print(b)
+print(c)
+print(d)
 
 '''
 4、实现迭代协议
@@ -174,9 +179,10 @@ print()
 #忽略注释行
 print("10"+"-"*60)
 from itertools import dropwhile
+print("# yourself is most important overISCHicagoNotHJ".startswith('#'))
 #只会舍弃第一个注释的#符号的行,其他行不需要进行筛选直接返回
 with open('foo.txt') as f:
-    for line in dropwhile(lambda line : line.startswith('#'),f):
+    for line in dropwhile(lambda x : x.startswith('#'),f):
         print(line,end="")
 
 '''
@@ -192,6 +198,7 @@ for x in itertools.islice(items,2,None):
 '''
 print("11"+"-"*60)
 with  open('foo.txt') as f:
+    #()返回的是一个生成器
     lines = (line for line in f if not line.startswith('#'))
     for line in lines:
         print(line,end='')
@@ -370,3 +377,27 @@ import sys
 with open('foo.txt') as f:
     for chunk in iter(lambda:f.read(10),''):
         sys.stdout.write(chunk)
+
+'''
+13、yield和send的基本用法
+    生成器通过next 或者 send方法都可以启动
+'''
+print("21"+"-"*60)
+
+def coroutine():
+    print("Coroutine started")
+    x = yield
+    print("Got:", x)
+    y = yield
+    print("Got:", y)
+
+# 创建一个协程对象
+coro = coroutine()
+
+# 启动协程
+
+coro.send(None)
+# 发送数据给协程
+coro.send(10)
+coro.send(20)
+

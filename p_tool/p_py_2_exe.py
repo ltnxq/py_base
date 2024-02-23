@@ -1,5 +1,6 @@
 from distutils.core import setup
-import py2exe
+import py2exe  # type: ignore
+
 
 '''
 需要在cmd命令中执行打包的命令 不是直接run py
@@ -25,5 +26,5 @@ setup(
     options=options,    
     description = "this is a py2exe test",   
     zipfile=None,
-    console = [{"script":'p_appbuild4Android.py'}]
+    console = [{"script":'p_word_2_PDF.py'}]
 )

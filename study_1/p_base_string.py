@@ -23,3 +23,14 @@ print(Counter(Var1))
 print(Counter(Var2))
 
 # python字符串提供了大量的API供调用
+
+str = '''
+[
+{
+ "longitude":890.90,
+ "latitude":989.90
+}
+]
+'''
+
+print(len(str))

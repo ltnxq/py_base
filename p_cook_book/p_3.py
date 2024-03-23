@@ -298,3 +298,11 @@ import time
 
 timestamp = time.time()
 print("当前时间戳为: ",timestamp)
+
+
+'''
+10、将任意的日期转换为时间戳
+'''
+print("13"+"-"*60)
+a = datetime(2024,3,23)
+print(a.timestamp())

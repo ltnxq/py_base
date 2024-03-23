@@ -107,3 +107,55 @@ def clock_param(fmt = DEFAULT_FMT):
             return _result
         return clocked
    return decorate
+
+
+print("2"+"-"*60)
+
+'''
+装饰器是随着程序的执行而加载的,不是调用函数也会自动加载
+装饰器也是利用了函数闭包原理
+'''
+def makeBold(fn):
+    print("BBBBB"*5)
+    def wrapped():
+        print("bbbbb"*5)
+        return "<b>" + fn() + "</b>"
+    return wrapped
+ 
+def makeItalic(fn):
+    print("IIIII"*5)
+    def wrapped():
+        print("iiiiii" * 5)
+        return "<i>" + fn() + "</i>"
+    return wrapped
+ 
+#2.装饰器的使用，直接@加上函数名的形式，放到需要装饰的函数头上即可。
+@makeBold  #效果等同于test_Bold=makeBold(test_Bold)，装饰器放在一个函数上，相当于将这个函数当成参数传递给装饰函数
+def test_Bold():
+    print("test_Bold"*5)
+    return "this is the test_Bold"
+ 
+@makeItalic #效果等同于test_Italic=makeItalic(test_Italic)，装饰器放在一个函数上，相当于将这个函数当成参数传递给装饰函数
+def test_Italic():
+    print("test_Itali" * 5)
+    return "this is the test_Italic"
+
+#-----------下面对函数进行调用-----------------
+print(test_Bold)  # 函数是对象,现在指向的是<function makeBold.<locals>.wrapped at 0x000001FEC204FCA0>对象 
+
+
+'''
+多个装饰器修饰函数的时候,从内向外依次执行
+'''
+print("3"+"-"*60)
+
+@makeBold   #注意2.其效果等同于test_B_I=makeBold( makeItalic(test_B_I) )
+@makeItalic #注意1.其效果等同于test_B_I=makeItalic(test_B_I)
+def test_B_I():   
+    print("test_B_I"*5)
+    return "this is the test_B_I"
+
+test_B_I()
+
+
+

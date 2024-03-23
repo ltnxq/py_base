@@ -315,6 +315,29 @@ print(c)
    而attrgetter一般用于自定义的类的某一个属性进行操作 
    而lambda两种场景都是适合的
 '''
+'''
+ operator.itemgetter  标准库 operator 模块中的一个函数，用于创建一个可调用对象，该对象用于从对象中获取指定索引或键对应的值
+'''
+print("itemgetter_test"+"-"*60)
+from operator import itemgetter 
+
+data = [
+    {'name': 'Alice', 'age': 30},
+    {'name': 'Bob', 'age': 25},
+    {'name': 'Charlie', 'age': 35}
+]
+
+# 使用 itemgetter 获取 'name' 键对应的值
+get_name = itemgetter('name')  #返回一个可调用的对象
+print(callable(get_name))
+# 使用 itemgetter 获取 'age' 键对应的值
+get_age = itemgetter('age')
+print(callable(get_age))
+# 获取指定索引的值
+for person in data:
+    print(f"Name: {get_name(person)}, Age: {get_age(person)}")
+
+
 print("19"+"-"*60)
 rows = [ 
  {'fname': 'Brian', 'lname': 'Jones', 'uid': 1003}, 
@@ -322,7 +345,6 @@ rows = [
  {'fname': 'John', 'lname': 'Cleese', 'uid': 1001}, 
  {'fname': 'Big', 'lname': 'Jones', 'uid': 1004} 
 ] 
-from operator import itemgetter 
 from operator import  attrgetter
 
 rows_sortBy_fname = sorted(rows,key=itemgetter('fname'))
